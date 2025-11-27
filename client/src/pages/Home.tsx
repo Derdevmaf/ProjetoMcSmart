@@ -75,9 +75,15 @@ export default function Home() {
             <div className="mt-8">
               <h2 className="text-2xl font-bold mb-2">McSmart Locker</h2>
               <p className="text-sm mb-6 leading-relaxed">Retire seu pedido no McSmart Locker<br/>Sem fila, sem espera!</p>
-              <Button className="w-full bg-yellow-400 text-red-600 hover:bg-yellow-500 font-bold rounded-full py-3 text-base">
+              <a
+                href="https://wa.me/5554991997708?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20com%20retirada%20no%20SmartLocker"
+                target="_blank"
+                rel="noopener noreferrer"
+              >  
+                <Button className="w-full bg-yellow-400 text-red-600 hover:bg-yellow-500 font-bold rounded-full py-3 text-base">
                 Vamos lá!
               </Button>
+              </a>
             </div>
           </div>
         </section>
