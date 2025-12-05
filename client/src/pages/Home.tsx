@@ -36,44 +36,69 @@ export default function Home() {
         {/* Categories */}
         <section className="px-4 pb-6">
           <div className="flex gap-4 overflow-x-auto pb-2">
+            {/* Mcofertas */}
             <div className="flex flex-col items-center gap-2 flex-shrink-0">
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🍔</span>
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/combo-meal.jpg" alt="Mcofertas" className="w-full h-full object-cover" />
               </div>
-              <p className="text-xs text-center text-gray-700">McDonaldias</p>
+              <p className="text-xs text-center text-gray-700">Mcofertas</p>
             </div>
+            {/* Promoções - Pick up */}
             <div className="flex flex-col items-center gap-2 flex-shrink-0">
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🍔</span>
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/promopickup.png" alt="Promoções Pick up" className="w-full h-full object-cover" />
               </div>
               <p className="text-xs text-center text-gray-700">Promoções<br/>Pick up</p>
             </div>
+            {/* Sanduíches */}
             <div className="flex flex-col items-center gap-2 flex-shrink-0">
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🥪</span>
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/hamburger1.jpg" alt="Sanduíches" className="w-full h-full object-cover" />
               </div>
               <p className="text-xs text-center text-gray-700">Sanduíches</p>
             </div>
+            {/* Família Tasty */}
             <div className="flex flex-col items-center gap-2 flex-shrink-0">
-              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🍟</span>
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/familia-tasty.jpg" alt="Família Tasty" className="w-full h-full object-cover" />
               </div>
-              <p className="text-xs text-center text-gray-700">Mais</p>
+              <p className="text-xs text-center text-gray-700">Família Tasty</p>
             </div>
-          </div>
-        </section>
-
-        {/* McSmart Locker Promo */}
-        <section className="px-4 pb-6">
-          <div className="bg-red-600 rounded-2xl p-6 text-white relative overflow-hidden">
-            <div className="absolute top-4 left-4">
-              <span className="bg-yellow-400 text-red-600 text-xs font-bold px-3 py-1 rounded-full">🆕 novidade</span>
+            {/* Méqui Box */}
+            <div className="flex flex-col items-center gap-2 flex-shrink-0">
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/mequi-box.jpg" alt="Méqui Box" className="w-full h-full object-cover" />
+              </div>
+              <p className="text-xs text-center text-gray-700">Méqui Box</p>
             </div>
-            <div className="absolute top-4 right-4 bg-red-500 rounded-full p-3">
-              <span className="text-2xl">📦</span>
+            {/* Sobremesas */}
+            <div className="flex flex-col items-center gap-2 flex-shrink-0">
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/sobremesas.jpg" alt="Sobremesas" className="w-full h-full object-cover" />
+              </div>
+              <p className="text-xs text-center text-gray-700">Sobremesas</p>
             </div>
-            <div className="mt-8">
-              <h2 className="text-2xl font-bold mb-2">McSmart Locker</h2>
+              {/* Bebidas */}
+            <div className="flex flex-col items-center gap-2 flex-shrink-0">
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="/images/products/bebidas.jpg" alt="Bebidas" className="w-full h-full object-cover" />
+              </div>
+	              <p className="text-xs text-center text-gray-700">Bebidas</p>
+	            </div>
+	          </div>
+	        </section>
+	
+	        {/* McSmart Locker Promo */}
+	        <section className="px-4 pb-6">
+	          <div className="bg-red-600 rounded-2xl p-6 text-white relative overflow-hidden">
+	            <div className="absolute top-4 left-4">
+	              <span className="bg-yellow-400 text-red-600 text-xs font-bold px-3 py-1 rounded-full">🆕 novidade</span>
+	            </div>
+	            <div className="absolute top-4 right-4 bg-red-500 rounded-full p-3">
+	              <span className="text-2xl">📦</span>
+	            </div>
+	            <div className="mt-8">
+	              <h2 className="text-2xl font-bold mb-2">McSmart Locker</h2>
               <p className="text-sm mb-6 leading-relaxed">Retire seu pedido no McSmart Locker<br/>Sem fila, sem espera!</p>
               <a
                 href="https://wa.me/5554991997708?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20com%20retirada%20no%20SmartLocker"
@@ -92,10 +117,10 @@ export default function Home() {
         <section className="px-4 pb-6">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Sanduíches em oferta</h2>
           <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
-            {/* Product Card 1 */}
+            {/* Product Card 1 - Big Mac */}
             <div className="flex-shrink-0 w-48 bg-white border border-gray-200 rounded-lg overflow-hidden snap-start">
-              <div className="relative bg-gray-100 h-32 flex items-center justify-center">
-                <span className="text-4xl">🍔</span>
+              <div className="relative bg-gray-100 h-32 flex items-center justify-center overflow-hidden">
+                <img src="/images/products/bigmac2.png" alt="Big Mac" className="w-full h-full object-cover" />
                 <span className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">10% off</span>
               </div>
               <div className="p-3">
@@ -114,10 +139,10 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Product Card 2 */}
+            {/* Product Card 2 - Quarter Pounder */}
             <div className="flex-shrink-0 w-48 bg-white border border-gray-200 rounded-lg overflow-hidden snap-start">
-              <div className="relative bg-gray-100 h-32 flex items-center justify-center">
-                <span className="text-4xl">🍔</span>
+              <div className="relative bg-gray-100 h-32 flex items-center justify-center overflow-hidden">
+                <img src="/images/products/quarter-pounder.png" alt="Quarter Pounder" className="w-full h-full object-cover" />
                 <span className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">5% off</span>
               </div>
               <div className="p-3">
@@ -128,6 +153,72 @@ export default function Home() {
                 <p className="text-xs text-gray-600 mb-2">Hambúrguer 113g, queijo, cebola, picles</p>
                 <p className="text-xs text-gray-500 line-through">de R$ 25,00</p>
                 <p className="text-lg font-bold text-red-600">Por: R$ 23,75</p>
+                <div className="flex gap-1 mt-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-xs">★</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Product Card 3 - McChicken */}
+            <div className="flex-shrink-0 w-48 bg-white border border-gray-200 rounded-lg overflow-hidden snap-start">
+              <div className="relative bg-gray-100 h-32 flex items-center justify-center overflow-hidden">
+                <img src="/images/products/mcchicken.png" alt="McChicken" className="w-full h-full object-cover" />
+                <span className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">15% off</span>
+              </div>
+              <div className="p-3">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-bold text-gray-900 text-sm">McChicken</h3>
+                  <Heart className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                </div>
+                <p className="text-xs text-gray-600 mb-2">Frango empanado, alface, maionese especial</p>
+                <p className="text-xs text-gray-500 line-through">de R$ 18,00</p>
+                <p className="text-lg font-bold text-red-600">Por: R$ 15,30</p>
+                <div className="flex gap-1 mt-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-xs">★</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Product Card 4 - Filet-O-Fish */}
+            <div className="flex-shrink-0 w-48 bg-white border border-gray-200 rounded-lg overflow-hidden snap-start">
+              <div className="relative bg-gray-100 h-32 flex items-center justify-center overflow-hidden">
+                <img src="/images/products/filet-o-fish.png" alt="Filet-O-Fish" className="w-full h-full object-cover" />
+                <span className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">8% off</span>
+              </div>
+              <div className="p-3">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-bold text-gray-900 text-sm">Filet-O-Fish</h3>
+                  <Heart className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                </div>
+                <p className="text-xs text-gray-600 mb-2">Peixe empanado, queijo, molho tártaro</p>
+                <p className="text-xs text-gray-500 line-through">de R$ 20,00</p>
+                <p className="text-lg font-bold text-red-600">Por: R$ 18,40</p>
+                <div className="flex gap-1 mt-2">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-xs">★</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Product Card 5 - Hambúrguer */}
+            <div className="flex-shrink-0 w-48 bg-white border border-gray-200 rounded-lg overflow-hidden snap-start">
+              <div className="relative bg-gray-100 h-32 flex items-center justify-center overflow-hidden">
+                <img src="/images/products/quarter-pounder.png" alt="Hambúrguer" className="w-full h-full object-cover" />
+                <span className="absolute top-2 right-2 bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded">12% off</span>
+              </div>
+              <div className="p-3">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-bold text-gray-900 text-sm">Hambúrguer</h3>
+                  <Heart className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                </div>
+                <p className="text-xs text-gray-600 mb-2">Hambúrguer clássico, picles, cebola, ketchup</p>
+                <p className="text-xs text-gray-500 line-through">de R$ 12,00</p>
+                <p className="text-lg font-bold text-red-600">Por: R$ 10,56</p>
                 <div className="flex gap-1 mt-2">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-xs">★</span>
