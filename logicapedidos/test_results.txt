@@ -1,0 +1,813 @@
+
+--- Teste: H1 - Cenário 1: Localização válida e listagem de lojas ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+--- Teste: H1 - Cenário 2: Seleção da unidade (Transição para H2) ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+--- Teste: H1 - Cenário 3: Localização inválida ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Cidade Inexistente, Bairro Inexistente"
+Estado Anterior: request_location
+Estado Próximo: request_location
+Resposta: "Não encontramos nenhuma unidade próxima para a localização informada. Por favor, *digite sua cidade ..."
+Status: ✅ Sucesso
+
+--- Teste: H1 - Cenário 4: Usuário inativo (Timeout) ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "mensagem aleatória"
+Estado Anterior: select_store
+Estado Próximo: select_store
+Resposta: "Seleção inválida. Por favor, digite o número correspondente à unidade desejada (1, 2 ou 3).
+
+*Unidad..."
+Status: ✅ Sucesso
+
+Entrada: "mensagem após timeout"
+Estado Anterior: select_store
+Estado Próximo: timeout_prompt
+Resposta: "Olá! Percebemos que você ficou inativo por mais de 3 minutos. Deseja continuar seu pedido ou encerra..."
+Status: ✅ Sucesso
+
+--- Teste: H1 - Cenário 5: Seleção inválida da loja ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "4"
+Estado Anterior: select_store
+Estado Próximo: select_store
+Resposta: "Seleção inválida. Por favor, digite o número correspondente à unidade desejada (1, 2 ou 3).
+
+*Unidad..."
+Status: ✅ Sucesso
+
+--- Teste: H2 - Cenário 1: Confirmação da unidade selecionada (Transição para H3) ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirm_store
+Estado Próximo: in_preparation
+Resposta: "Ótimo! Seu pedido na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100) está sen..."
+Status: ✅ Sucesso
+
+--- Teste: H2 - Cenário 2: Rejeição da unidade selecionada ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "não"
+Estado Anterior: confirm_store
+Estado Próximo: request_location
+Resposta: "Entendido. Vamos selecionar outra unidade. Por favor, *digite sua cidade e bairro* novamente (ex: Ri..."
+Status: ✅ Sucesso
+
+--- Teste: H2 - Cenário 3: Confirmação inválida ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "talvez"
+Estado Anterior: confirm_store
+Estado Próximo: confirm_store
+Resposta: "Não entendi. Por favor, responda *Sim* ou *Não* para confirmar a retirada na unidade *Méqui N. Sra. ..."
+Status: ✅ Sucesso
+
+--- Teste: H3 - Cenário 1: Pedido sinalizado como pronto (Notificação) ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirm_store
+Estado Próximo: in_preparation
+Resposta: "Ótimo! Seu pedido na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100) está sen..."
+Status: ✅ Sucesso
+
+Entrada: "..."
+Estado Anterior: in_preparation
+Estado Próximo: ready_for_pickup
+Resposta: "*Seu pedido está pronto!* 
+
+Locker: *13* 
+Senha: *6812* 
+
+Digite o código no painel do locker para a..."
+Status: ✅ Sucesso
+
+--- Teste: H3 - Cenário 2: Pedido ainda não está pronto ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirm_store
+Estado Próximo: in_preparation
+Resposta: "Ótimo! Seu pedido na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100) está sen..."
+Status: ✅ Sucesso
+
+Entrada: "meu pedido está pronto?"
+Estado Anterior: in_preparation
+Estado Próximo: in_preparation
+Resposta: "Seu pedido ainda está em preparo. Faltam aproximadamente *7 segundos* para ficar pronto (simulação)...."
+Status: ✅ Sucesso
+
+--- Teste: H3 - Cenário 3: Agradecimento pós retirada ---
+
+Entrada: "1"
+Estado Anterior: start
+Estado Próximo: initial_choice
+Resposta: "Olá! Seja bem-vindo(a) ao nosso serviço de pedidos via WhatsApp. Como podemos te ajudar hoje?
+
+*1- V..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: initial_choice
+Estado Próximo: menu
+Resposta: "*Escolha uma categoria digitando o número correspondente:*
+
+1- Promoções - McSmart Locker 🏷️
+2- San..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: menu
+Estado Próximo: categoria_1
+Resposta: "*Produtos em Promoções - McSmart Locker 🏷️:*
+
+101 - Combo Smart | R$ 25,90
+102 - Duplo Cheddar | R$..."
+Status: ✅ Sucesso
+
+Entrada: "101"
+Estado Anterior: categoria_1
+Estado Próximo: confirmar_P101
+Resposta: "Você deseja adicionar *Combo Smart* (R$ 25,90) ao seu pedido? Digite *sim* ou *não*...."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirmar_P101
+Estado Próximo: cart_review
+Resposta: "🛒 *Seu Carrinho:*
+
+*1x* Combo Smart (R$ 25,90 un.) - Total: R$ 25,90
+
+*Total do Pedido:* R$ 25,90
+
+..."
+Status: ✅ Sucesso
+
+Entrada: "2"
+Estado Anterior: cart_review
+Estado Próximo: request_location
+Resposta: "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua l..."
+Status: ✅ Sucesso
+
+Entrada: "Rio de Janeiro, Copacabana"
+Estado Anterior: request_location
+Estado Próximo: select_store
+Resposta: "*Unidades mais próximas:*
+
+[1] Méqui N. Sra. de Copacabana (Rua N. Sra. de Copacabana, 100)
+[2] Méqu..."
+Status: ✅ Sucesso
+
+Entrada: "1"
+Estado Anterior: select_store
+Estado Próximo: confirm_store
+Resposta: "Você confirma a retirada na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100)?
+..."
+Status: ✅ Sucesso
+
+Entrada: "sim"
+Estado Anterior: confirm_store
+Estado Próximo: in_preparation
+Resposta: "Ótimo! Seu pedido na unidade *Méqui N. Sra. de Copacabana* (Rua N. Sra. de Copacabana, 100) está sen..."
+Status: ✅ Sucesso
+
+Entrada: "..."
+Estado Anterior: in_preparation
+Estado Próximo: ready_for_pickup
+Resposta: "*Seu pedido está pronto!* 
+
+Locker: *06* 
+Senha: *9548* 
+
+Digite o código no painel do locker para a..."
+Status: ✅ Sucesso
+
+Entrada: "retirei"
+Estado Anterior: ready_for_pickup
+Estado Próximo: start
+Resposta: "Obrigado! Bom apetite! 😁🍟 Se quiser fazer um novo pedido, é só me chamar!..."
+Status: ✅ Sucesso
+
+=================================================
+Fim da execução dos testes.
+=================================================

@@ -54,6 +54,28 @@ const MENU_DATA = {
 };
 
 // =================================================================================================
+// 1.1. ESTRUTURA DE DADOS DE LOJAS
+// =================================================================================================
+
+const STORE_DATA = {
+    "rio de janeiro": {
+        "copacabana": [
+            { id: "S001", name: "Méqui N. Sra. de Copacabana", address: "Rua N. Sra. de Copacabana, 100" },
+            { id: "S002", name: "Méqui Rua Figueiredo", address: "Rua Figueiredo de Magalhães, 30" },
+            { id: "S003", name: "Méqui Posto 6", address: "Av. Atlântica, 4200" }
+        ],
+        "ipanema": [
+            { id: "S004", name: "Méqui Ipanema", address: "Rua Visconde de Pirajá, 500" }
+        ]
+    },
+    "são paulo": {
+        "pinheiros": [
+            { id: "S005", name: "Méqui Pinheiros", address: "Rua dos Pinheiros, 1000" }
+        ]
+    }
+};
+
+// =================================================================================================
 // 2. FUNÇÕES AUXILIARES
 // =================================================================================================
 
@@ -123,6 +145,55 @@ function findProductByMenuNumber(menuNumber) {
     return null;
 }
 
+function findStores(city, neighborhood) {
+    const cityKey = city.toLowerCase().trim();
+    const neighborhoodKey = neighborhood.toLowerCase().trim();
+
+    if (STORE_DATA[cityKey] && STORE_DATA[cityKey][neighborhoodKey]) {
+        // Regra de Negócio: Caso haja menos de 3 unidades, exibe as que existirem.
+        return STORE_DATA[cityKey][neighborhoodKey].slice(0, 3);
+    }
+    return [];
+}
+
+function generateLockerCode() {
+    // Regra de Negócio: string numérica com dois dígitos (ex: 07), entre 01 e 20
+    const lockerNumber = Math.floor(Math.random() * 20) + 1;
+    return lockerNumber.toString().padStart(2, '0');
+}
+
+function generatePassword() {
+    // Regra de Negócio: código numérico de 4 dígitos, sem sequências ou repetições
+    let password = '';
+    let isValid = false;
+    while (!isValid) {
+        password = Math.floor(1000 + Math.random() * 9000).toString();
+        // Verifica repetições (ex: 1111)
+        const hasRepetition = /(.)\1{3}/.test(password);
+        // Verifica sequências (ex: 1234 ou 4321)
+        const digits = password.split('').map(Number);
+        const isSequential = (digits[0] + 1 === digits[1] && digits[1] + 1 === digits[2] && digits[2] + 1 === digits[3]) ||
+                             (digits[0] - 1 === digits[1] && digits[1] - 1 === digits[2] && digits[2] - 1 === digits[3]);
+        
+        if (!hasRepetition && !isSequential) {
+            isValid = true;
+        }
+    }
+    return password;
+}
+
+function buildStoreList(stores) {
+    if (stores.length === 0) {
+        return "Não encontramos nenhuma unidade próxima para a localização informada.";
+    }
+    let message = "*Unidades mais próximas:*\n\n";
+    stores.forEach((store, index) => {
+        message += `[${index + 1}] ${store.name} (${store.address})\n`;
+    });
+    message += "\n*Por favor, digite o número correspondente à unidade desejada (1, 2 ou 3).*\n";
+    return message;
+}
+
 // =================================================================================================
 // 3. LÓGICA PRINCIPAL DO CHATBOT
 // =================================================================================================
@@ -140,7 +211,7 @@ function findProductByMenuNumber(menuNumber) {
 function main(user_input, current_state, current_cart, last_product_id, last_interaction_time, simulated_current_time = null) {
     const input = user_input.trim().toLowerCase();
     const currentTime = simulated_current_time || Date.now();
-    const TIMEOUT_MS = 30 * 60 * 1000; // 30 minutos
+    const TIMEOUT_MS = 3 * 60 * 1000; // 3 minutos (Regra de Negócio: Cenário 4 da História 01 e Cenário 4 da História 02)
 
     let response = "";
     let next_state = current_state;
@@ -151,7 +222,7 @@ function main(user_input, current_state, current_cart, last_product_id, last_int
 
     // 3.1. Tratamento de Timeout
     if (current_state !== "start" && current_state !== "initial_choice" && last_interaction_time && (currentTime - last_interaction_time > TIMEOUT_MS) && current_state !== "timeout_prompt") {
-        response = "Olá! Percebemos que você ficou inativo por 30 minutos. Deseja continuar seu pedido ou começar do zero?\n\n*👍 Sim, continuar pedido*\n*🔄 Começar do zero*";
+        response = "Olá! Percebemos que você ficou inativo por mais de 3 minutos. Deseja continuar seu pedido ou encerrar?\n\n*👍 Sim, continuar pedido*\n*❌ Encerrar pedido*";
         next_state = "timeout_prompt";
         return { response, next_state, new_cart, new_last_product_id, new_last_interaction_time };
     }
@@ -221,11 +292,11 @@ function main(user_input, current_state, current_cart, last_product_id, last_int
                 if (new_cart.length === 0) {
                     response = "Você precisa ter ao menos 1 item no carrinho para finalizar o pedido. Por favor, adicione itens ou digite *1* para voltar ao menu.";
                 } else {
-                    response = buildCartMessage(new_cart) + "\n\n*Pedido finalizado com sucesso!* Agradecemos a preferência. Em breve, um de nossos atendentes entrará em contato para confirmar a entrega e o pagamento.";
-                    next_state = "start";
-                    new_cart = [];
+                    // Transição para a História 01: Escolha de loja
+                    response = "Seu pedido foi finalizado com sucesso! Para que você possa retirar no locker, precisamos saber sua localização. Por favor, *digite sua cidade e bairro* (ex: Rio de Janeiro, Copacabana).";
+                    next_state = "request_location";
+                    is_valid_interaction = true;
                 }
-                is_valid_interaction = true;
             } else {
                 response = "Opção inválida.";
             }
@@ -233,16 +304,185 @@ function main(user_input, current_state, current_cart, last_product_id, last_int
 
         case "timeout_prompt":
             if (input === "👍" || input === "sim" || input.includes("continuar")) {
+                // Se o usuário estava no fluxo de pedido (menu, categoria, etc.), volta para o menu.
+                // Se o usuário estava no fluxo de loja, precisa voltar para o estado correto.
+                // Como o estado anterior não é salvo, vamos para o menu para simplificar.
                 response = buildCategoryMenu(new_cart);
                 next_state = "menu";
                 is_valid_interaction = true;
-            } else if (input === "🔄" || input.includes("zero")) {
+            } else if (input === "❌" || input.includes("encerrar")) {
+                response = "Pedido encerrado. Se quiser fazer um novo pedido, é só me chamar!";
+                next_state = "start";
                 new_cart = [];
-                response = "Seu carrinho foi esvaziado. " + buildCategoryMenu(new_cart);
-                next_state = "menu";
                 is_valid_interaction = true;
             } else {
-                response = "Opção inválida. Por favor, escolha *👍 Sim, continuar pedido* ou *🔄 Começar do zero*.";
+                response = "Opção inválida. Por favor, escolha *👍 Sim, continuar pedido* ou *❌ Encerrar pedido*.";
+            }
+            break;
+
+        case "request_location":
+            const locationParts = input.split(',').map(part => part.trim());
+            if (locationParts.length >= 2) {
+                const city = locationParts[0];
+                const neighborhood = locationParts[1];
+                const stores = findStores(city, neighborhood);
+
+                if (stores.length > 0) {
+                    // Cenário 1: Localização válida
+                    response = buildStoreList(stores);
+                    next_state = "select_store";
+                    // Armazenar as lojas encontradas no new_last_product_id para simplificar o estado
+                    new_last_product_id = JSON.stringify(stores);
+                    is_valid_interaction = true;
+                } else {
+                    // Cenário 3: Localização inválida
+                    response = "Não encontramos nenhuma unidade próxima para a localização informada. Por favor, *digite sua cidade e bairro* novamente (ex: Rio de Janeiro, Copacabana).";
+                    // Mantém o estado "request_location"
+                    is_valid_interaction = true;
+                }
+            } else {
+                response = "Formato inválido. Por favor, *digite sua cidade e bairro* separados por vírgula (ex: Rio de Janeiro, Copacabana).";
+            }
+            break;
+
+        case "select_store":
+            const selectedNumber = parseInt(input);
+            let availableStores = [];
+            try {
+                availableStores = JSON.parse(new_last_product_id);
+            } catch (e) {
+                // Se new_last_product_id não for um JSON válido, algo deu errado.
+                response = "Ocorreu um erro ao processar a lista de lojas. Por favor, *digite sua cidade e bairro* novamente (ex: Rio de Janeiro, Copacabana).";
+                next_state = "request_location";
+                new_last_product_id = null;
+                is_valid_interaction = true;
+                break;
+            }
+
+            if (selectedNumber >= 1 && selectedNumber <= availableStores.length) {
+                const selectedStore = availableStores[selectedNumber - 1];
+                // Cenário 2: Seleção da unidade
+                // Armazenar a loja selecionada no new_last_product_id para a próxima história
+                new_last_product_id = JSON.stringify(selectedStore);
+                
+                // Transição para a História 02: Confirmação da unidade
+                response = `Você confirma a retirada na unidade *${selectedStore.name}* (${selectedStore.address})?\n\n*Sim* ou *Não*`;
+                next_state = "confirm_store";
+                is_valid_interaction = true;
+            } else {
+                // Cenário 5: Seleção inválida da loja
+                response = "Seleção inválida. Por favor, digite o número correspondente à unidade desejada (1, 2 ou 3).\n\n" + buildStoreList(availableStores);
+                // Mantém o estado "select_store"
+                is_valid_interaction = true;
+            }
+            break;
+
+        case "confirm_store":
+            let confirmedStore;
+            try {
+                confirmedStore = JSON.parse(new_last_product_id);
+            } catch (e) {
+                response = "Ocorreu um erro ao processar a loja selecionada. Por favor, *digite sua cidade e bairro* novamente (ex: Rio de Janeiro, Copacabana).";
+                next_state = "request_location";
+                new_last_product_id = null;
+                is_valid_interaction = true;
+                break;
+            }
+
+            if (input === "sim") {
+                // Cenário 1: Confirmação da unidade selecionada
+                // Simulação de início de preparo e tempo estimado
+                const preparationTime = 15; // Minutos
+                response = `Ótimo! Seu pedido na unidade *${confirmedStore.name}* (${confirmedStore.address}) está sendo preparado. O tempo estimado para ficar disponível no locker é de *${preparationTime} minutos*.`;
+                next_state = "in_preparation";
+                // Armazenar a loja confirmada e o status do pedido
+                new_last_product_id = JSON.stringify({ ...confirmedStore, status: "in_preparation", preparation_start_time: currentTime });
+                is_valid_interaction = true;
+            } else if (input === "não" || input === "nao") {
+                // Cenário 2: Rejeição da unidade selecionada
+                response = "Entendido. Vamos selecionar outra unidade. Por favor, *digite sua cidade e bairro* novamente (ex: Rio de Janeiro, Copacabana).";
+                next_state = "request_location";
+                new_last_product_id = null; // Limpa a seleção anterior
+                is_valid_interaction = true;
+            } else {
+                // Cenário 3: Confirmação inválida
+                response = `Não entendi. Por favor, responda *Sim* ou *Não* para confirmar a retirada na unidade *${confirmedStore.name}* (${confirmedStore.address}).`;
+                // Mantém o estado "confirm_store"
+                is_valid_interaction = true;
+            }
+            break;
+
+        case "in_preparation":
+            let preparationData;
+            try {
+                preparationData = JSON.parse(new_last_product_id);
+            } catch (e) {
+                // Se new_last_product_id não for um JSON válido, algo deu errado.
+                response = "Ocorreu um erro ao processar o status do pedido. Por favor, *digite sua cidade e bairro* novamente (ex: Rio de Janeiro, Copacabana).";
+                next_state = "request_location";
+                new_last_product_id = null;
+                is_valid_interaction = true;
+                break;
+            }
+
+            // Simulação de alteração de status para "pronto" após 7 segundos (Regra de Negócio)
+            const PREPARATION_TIME_MS = 7 * 1000; // 7 segundos para demonstração
+            const isReady = (currentTime - preparationData.preparation_start_time) >= PREPARATION_TIME_MS;
+
+            if (isReady && preparationData.status !== "ready") {
+                // Cenário 1: Pedido sinalizado como pronto (Notificação)
+                const locker = generateLockerCode();
+                const password = generatePassword();
+                
+                response = `*Seu pedido está pronto!* \n\nLocker: *${locker}* \nSenha: *${password}* \n\nDigite o código no painel do locker para abrir o compartimento.`;
+                next_state = "ready_for_pickup";
+                // Atualiza o status e armazena locker/senha
+                new_last_product_id = JSON.stringify({ ...preparationData, status: "ready", locker, password });
+                is_valid_interaction = true;
+                // Retorna imediatamente para enviar a notificação
+                return { response, next_state, new_cart, new_last_product_id, new_last_interaction_time: currentTime };
+            }
+
+            if (input.includes("retirada") || input.includes("pronto")) {
+                // Cenário 2: Pedido ainda não está pronto
+                const timeElapsed = Math.floor((currentTime - preparationData.preparation_start_time) / 1000);
+                const remainingTime = Math.max(0, Math.ceil((PREPARATION_TIME_MS - timeElapsed) / 1000));
+                
+                response = `Seu pedido ainda está em preparo. Faltam aproximadamente *${remainingTime} segundos* para ficar pronto (simulação).`;
+                is_valid_interaction = true;
+            } else {
+                // Mensagem padrão para evitar loop
+                response = "Seu pedido está em preparo. Você será notificado assim que estiver pronto para retirada.";
+                is_valid_interaction = true;
+            }
+            break;
+
+        case "ready_for_pickup":
+            let pickupData;
+            try {
+                pickupData = JSON.parse(new_last_product_id);
+            } catch (e) {
+                response = "Ocorreu um erro ao processar os dados de retirada. Por favor, inicie um novo pedido.";
+                next_state = "start";
+                new_last_product_id = null;
+                is_valid_interaction = true;
+                break;
+            }
+
+            if (input.includes("retirada") || input.includes("pronto")) {
+                // Reenvia as informações do locker
+                response = `Seu pedido está pronto! \n\nLocker: *${pickupData.locker}* \nSenha: *${pickupData.password}* \n\nDigite o código no painel do locker para abrir o compartimento.`;
+                is_valid_interaction = true;
+            } else if (input.includes("retirei") || input.includes("obrigado") || input.includes("retirada")) {
+                // Cenário 3: Agradecimento pós retirada
+                response = "Obrigado! Bom apetite! 😁🍟 Se quiser fazer um novo pedido, é só me chamar!";
+                next_state = "start";
+                new_cart = [];
+                new_last_product_id = null;
+                is_valid_interaction = true;
+            } else {
+                response = "Seu pedido está pronto para retirada. Por favor, me avise quando tiver retirado para que eu possa finalizar o pedido.";
+                is_valid_interaction = true;
             }
             break;
 
